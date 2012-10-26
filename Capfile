@@ -15,16 +15,10 @@ set :current_dir, "current"
 
 set :scm, "git"
 set :repository,  "git://github.com/JoshMock/nashvl_home.git"
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 set :scm_verbose, true
 set :git_enable_submodules, 1
 
 role :web, domain
 role :app, domain
 
-
-task :link_shared_directories do     
-  run "ln -s #{shared_path}/photos #{release_path}/photos"
-end    
-
-after "deploy:update_code", :link_shared_directories
